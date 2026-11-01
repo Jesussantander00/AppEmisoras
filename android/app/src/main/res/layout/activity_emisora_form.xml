@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datos de la emisora"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <EditText android:id="@+id/etId" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="ID (ej. EM-101)" />
+        <EditText android:id="@+id/etNombre" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nombre" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etCanal" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Canal" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etBandaFM" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Banda FM" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etBandaAM" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Banda AM" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etNumLocutores" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Numero de locutores" android:inputType="number" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etGenero" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Genero" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etHorario" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Horario" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etPatrocinador" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Patrocinador" android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/etPais"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Pais" />
+
+            <Button
+                android:id="@+id/btnUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="GPS" />
+        </LinearLayout>
+
+        <EditText android:id="@+id/etDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Descripcion" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etNumPrograma" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Numero de programas" android:inputType="number" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etNumCiudades" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Numero de ciudades" android:inputType="number" android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Guardar" />
+
+    </LinearLayout>
+</ScrollView>

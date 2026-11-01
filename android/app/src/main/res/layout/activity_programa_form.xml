@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datos del programa"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <EditText android:id="@+id/etId" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="ID (ej. PR-201)" />
+        <EditText android:id="@+id/etNombre" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Nombre" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etEmisoraId" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="ID de la emisora (FK)" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etConductor" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Conductor" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etHorarioInicio" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Horario inicio" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etHorarioFin" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Horario fin" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etGenero" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Genero" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etDuracionMinutos" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Duracion (minutos)" android:inputType="number" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Descripcion" android:layout_marginTop="8dp" />
+        <EditText android:id="@+id/etDiasTransmision" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Dias de transmision" android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Guardar" />
+
+    </LinearLayout>
+</ScrollView>
