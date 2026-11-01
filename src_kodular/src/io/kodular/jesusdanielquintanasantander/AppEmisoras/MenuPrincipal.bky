@@ -1,0 +1,87 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+<block type="component_event" x="0" y="0">
+  <mutation component_type="Form" is_generic="false" instance_name="MenuPrincipal" event_name="Initialize"></mutation>
+  <field name="COMPONENT_SELECTOR">MenuPrincipal</field>
+  <statement name="DO">
+    <block type="controls_if">
+      <mutation elseif="0" else="0"></mutation>
+      <value name="IF0">
+        <block type="text_isEmpty">
+          <value name="VALUE">
+            <block type="component_method">
+              <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"></mutation>
+              <field name="COMPONENT_SELECTOR">TinyDB1</field>
+              <value name="ARG0"><block type="text"><field name="TEXT">usuarioId</field></block></value>
+              <value name="ARG1"><block type="text"><field name="TEXT"></field></block></value>
+            </block>
+          </value>
+        </block>
+      </value>
+      <statement name="DO0">
+        <block type="controls_openAnotherScreen">
+          <mutation></mutation>
+          <value name="SCREEN"><block type="text"><field name="TEXT">Screen1</field></block></value>
+        </block>
+      </statement>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="200">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonEmisoras" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonEmisoras</field>
+  <statement name="DO">
+    <block type="controls_openAnotherScreen">
+      <mutation></mutation>
+      <value name="SCREEN"><block type="text"><field name="TEXT">EmisorasLista</field></block></value>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="400">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonProgramas" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonProgramas</field>
+  <statement name="DO">
+    <block type="controls_openAnotherScreen">
+      <mutation></mutation>
+      <value name="SCREEN"><block type="text"><field name="TEXT">ProgramasLista</field></block></value>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="600">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonReporteEmisoras" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonReporteEmisoras</field>
+  <statement name="DO">
+    <block type="controls_openAnotherScreen">
+      <mutation></mutation>
+      <value name="SCREEN"><block type="text"><field name="TEXT">ReporteEmisoras</field></block></value>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="800">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonReporteProgramas" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonReporteProgramas</field>
+  <statement name="DO">
+    <block type="controls_openAnotherScreen">
+      <mutation></mutation>
+      <value name="SCREEN"><block type="text"><field name="TEXT">ReporteProgramas</field></block></value>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="1000">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonCerrarSesion" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonCerrarSesion</field>
+  <statement name="DO">
+    <block type="component_method">
+      <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+      <field name="COMPONENT_SELECTOR">TinyDB1</field>
+      <value name="ARG0"><block type="text"><field name="TEXT">usuarioId</field></block></value>
+      <value name="ARG1"><block type="text"><field name="TEXT"></field></block></value>
+      <next>
+        <block type="controls_openAnotherScreen">
+          <mutation></mutation>
+          <value name="SCREEN"><block type="text"><field name="TEXT">Screen1</field></block></value>
+        </block>
+      </next>
+    </block>
+  </statement>
+</block>
+</xml>

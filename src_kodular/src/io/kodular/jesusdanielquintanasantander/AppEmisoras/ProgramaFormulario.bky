@@ -1,0 +1,268 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+<block type="global_declaration" x="0" y="0">
+  <field name="NAME">idProgramaEditando</field>
+  <value name="VALUE"><block type="text"><field name="TEXT"></field></block></value>
+</block>
+<block type="global_declaration" x="0" y="100"><field name="NAME">estadoFormularioPrograma</field><value name="VALUE"><block type="text"><field name="TEXT"></field></block></value></block>
+<block type="global_declaration" x="0" y="150"><field name="NAME">datoProgramaCargado</field><value name="VALUE"><block type="dictionaries_create_with"><mutation items="0"></mutation></block></value></block>
+<block type="component_event" x="0" y="200">
+  <mutation component_type="Form" is_generic="false" instance_name="ProgramaFormulario" event_name="Initialize"></mutation>
+  <field name="COMPONENT_SELECTOR">ProgramaFormulario</field>
+  <statement name="DO">
+    <block type="lexical_variable_set">
+      
+      <field name="VAR">global idProgramaEditando</field>
+      <value name="VALUE"><block type="controls_getStartValue"></block></value>
+      <next>
+        <block type="controls_if">
+          <mutation elseif="0" else="0"></mutation>
+          <value name="IF0">
+            <block type="logic_negate">
+              <value name="BOOL">
+                <block type="text_isEmpty">
+                  <value name="VALUE"><block type="lexical_variable_get"><field name="VAR">global idProgramaEditando</field></block></value>
+                </block>
+              </value>
+            </block>
+          </value>
+          <statement name="DO0">
+            <block type="lexical_variable_set"><field name="VAR">global estadoFormularioPrograma</field><value name="VALUE"><block type="text"><field name="TEXT">cargando</field></block></value><next><block type="component_set_get"><mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field><field name="PROP">Url</field><value name="VALUE"><block type="text_join"><mutation items="3"></mutation><value name="ADD0"><block type="text"><field name="TEXT">https://appemisoras-backend.onrender.com/api/programas/</field></block></value><value name="ADD1"><block type="lexical_variable_get"><field name="VAR">global idProgramaEditando</field></block></value><value name="ADD2"><block type="text"><field name="TEXT"></field></block></value></block></value><next><block type="component_method"><mutation component_type="Web" method_name="Get" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field></block></next></block></next></block>
+          </statement>
+        </block>
+      </next>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="400"><mutation component_type="Web" is_generic="false" instance_name="Web1" event_name="GotText"></mutation><field name="COMPONENT_SELECTOR">Web1</field><statement name="DO"><block type="controls_if"><mutation elseif="2" else="0"></mutation><value name="IF0"><block type="logic_compare"><field name="OP">EQ</field><value name="A"><block type="lexical_variable_get"><field name="VAR">global estadoFormularioPrograma</field></block></value><value name="B"><block type="text"><field name="TEXT">cargando</field></block></value></block></value><statement name="DO0"><block type="lexical_variable_set"><field name="VAR">global estadoFormularioPrograma</field><value name="VALUE"><block type="text"><field name="TEXT"></field></block></value><next><block type="controls_if"><mutation elseif="0" else="0"></mutation><value name="IF0"><block type="logic_negate"><value name="BOOL"><block type="logic_compare"><field name="OP">EQ</field><value name="A"><block type="lexical_variable_get"><mutation><eventparam name="responseContent"></eventparam></mutation><field name="VAR">responseContent</field></block></value><value name="B"><block type="text"><field name="TEXT">null</field></block></value></block></value></block></value><statement name="DO0"><block type="lexical_variable_set"><field name="VAR">global datoProgramaCargado</field><value name="VALUE"><block type="dictionaries_alist_to_dict"><value name="PAIRS"><block type="component_method"><mutation component_type="Web" method_name="JsonTextDecode" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field><value name="ARG0"><block type="lexical_variable_get"><mutation><eventparam name="responseContent"></eventparam></mutation><field name="VAR">responseContent</field></block></value></block></value></block></value><next><block type="component_set_get">
+          <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoIdPrograma"></mutation>
+          <field name="COMPONENT_SELECTOR">CampoIdPrograma</field>
+          <field name="PROP">Text</field>
+          <value name="VALUE">
+            <block type="dictionaries_lookup">
+              <value name="KEY"><block type="text"><field name="TEXT">id</field></block></value>
+              <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+              <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+            </block>
+          </value>
+          <next>
+            <block type="component_set_get">
+              <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoNombrePrograma"></mutation>
+              <field name="COMPONENT_SELECTOR">CampoNombrePrograma</field>
+              <field name="PROP">Text</field>
+              <value name="VALUE">
+                <block type="dictionaries_lookup">
+                  <value name="KEY"><block type="text"><field name="TEXT">nombre</field></block></value>
+                  <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                  <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                </block>
+              </value>
+              <next>
+                <block type="component_set_get">
+                  <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoEmisoraId"></mutation>
+                  <field name="COMPONENT_SELECTOR">CampoEmisoraId</field>
+                  <field name="PROP">Text</field>
+                  <value name="VALUE">
+                    <block type="dictionaries_lookup">
+                      <value name="KEY"><block type="text"><field name="TEXT">emisoraId</field></block></value>
+                      <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                      <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                    </block>
+                  </value>
+                  <next>
+                    <block type="component_set_get">
+                      <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoConductor"></mutation>
+                      <field name="COMPONENT_SELECTOR">CampoConductor</field>
+                      <field name="PROP">Text</field>
+                      <value name="VALUE">
+                        <block type="dictionaries_lookup">
+                          <value name="KEY"><block type="text"><field name="TEXT">conductor</field></block></value>
+                          <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                          <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                        </block>
+                      </value>
+                      <next>
+                        <block type="component_set_get">
+                          <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoHorarioInicio"></mutation>
+                          <field name="COMPONENT_SELECTOR">CampoHorarioInicio</field>
+                          <field name="PROP">Text</field>
+                          <value name="VALUE">
+                            <block type="dictionaries_lookup">
+                              <value name="KEY"><block type="text"><field name="TEXT">horarioInicio</field></block></value>
+                              <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                              <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                            </block>
+                          </value>
+                          <next>
+                            <block type="component_set_get">
+                              <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoHorarioFin"></mutation>
+                              <field name="COMPONENT_SELECTOR">CampoHorarioFin</field>
+                              <field name="PROP">Text</field>
+                              <value name="VALUE">
+                                <block type="dictionaries_lookup">
+                                  <value name="KEY"><block type="text"><field name="TEXT">horarioFin</field></block></value>
+                                  <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                                  <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                                </block>
+                              </value>
+                              <next>
+                                <block type="component_set_get">
+                                  <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoGeneroPrograma"></mutation>
+                                  <field name="COMPONENT_SELECTOR">CampoGeneroPrograma</field>
+                                  <field name="PROP">Text</field>
+                                  <value name="VALUE">
+                                    <block type="dictionaries_lookup">
+                                      <value name="KEY"><block type="text"><field name="TEXT">genero</field></block></value>
+                                      <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                                      <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                                    </block>
+                                  </value>
+                                  <next>
+                                    <block type="component_set_get">
+                                      <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoDuracionMinutos"></mutation>
+                                      <field name="COMPONENT_SELECTOR">CampoDuracionMinutos</field>
+                                      <field name="PROP">Text</field>
+                                      <value name="VALUE">
+                                        <block type="dictionaries_lookup">
+                                          <value name="KEY"><block type="text"><field name="TEXT">duracionMinutos</field></block></value>
+                                          <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                                          <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                                        </block>
+                                      </value>
+                                      <next>
+                                        <block type="component_set_get">
+                                          <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoDescripcionPrograma"></mutation>
+                                          <field name="COMPONENT_SELECTOR">CampoDescripcionPrograma</field>
+                                          <field name="PROP">Text</field>
+                                          <value name="VALUE">
+                                            <block type="dictionaries_lookup">
+                                              <value name="KEY"><block type="text"><field name="TEXT">descripcion</field></block></value>
+                                              <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                                              <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                                            </block>
+                                          </value>
+                                          <next>
+                                            <block type="component_set_get">
+                                              <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoDiasTransmision"></mutation>
+                                              <field name="COMPONENT_SELECTOR">CampoDiasTransmision</field>
+                                              <field name="PROP">Text</field>
+                                              <value name="VALUE">
+                                                <block type="dictionaries_lookup">
+                                                  <value name="KEY"><block type="text"><field name="TEXT">diasTransmision</field></block></value>
+                                                  <value name="DICT"><block type="lexical_variable_get"><field name="VAR">global datoProgramaCargado</field></block></value>
+                                                  <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                                                </block>
+                                              </value>
+                                            </block>
+                                          </next>
+                                        </block>
+                                      </next>
+                                    </block>
+                                  </next>
+                                </block>
+                              </next>
+                            </block>
+                          </next>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block></next></block></statement></block></next></block></statement><value name="IF1"><block type="logic_compare"><field name="OP">EQ</field><value name="A"><block type="lexical_variable_get"><field name="VAR">global estadoFormularioPrograma</field></block></value><value name="B"><block type="text"><field name="TEXT">guardando</field></block></value></block></value><statement name="DO1"><block type="lexical_variable_set"><field name="VAR">global estadoFormularioPrograma</field><value name="VALUE"><block type="text"><field name="TEXT"></field></block></value><next><block type="component_method"><mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation><field name="COMPONENT_SELECTOR">Notifier1</field><value name="ARG0"><block type="text"><field name="TEXT">Programa guardado correctamente</field></block></value><next><block type="controls_openAnotherScreen"><value name="SCREEN"><block type="text"><field name="TEXT">ProgramasLista</field></block></value></block></next></block></next></block></statement><value name="IF2"><block type="logic_compare"><field name="OP">EQ</field><value name="A"><block type="lexical_variable_get"><field name="VAR">global estadoFormularioPrograma</field></block></value><value name="B"><block type="text"><field name="TEXT">eliminando</field></block></value></block></value><statement name="DO2"><block type="lexical_variable_set"><field name="VAR">global estadoFormularioPrograma</field><value name="VALUE"><block type="text"><field name="TEXT"></field></block></value><next><block type="component_method"><mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation><field name="COMPONENT_SELECTOR">Notifier1</field><value name="ARG0"><block type="text"><field name="TEXT">Programa eliminado</field></block></value><next><block type="controls_openAnotherScreen"><value name="SCREEN"><block type="text"><field name="TEXT">ProgramasLista</field></block></value></block></next></block></next></block></statement></block></statement></block><block type="component_event" x="0" y="600">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonGuardarPrograma" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonGuardarPrograma</field>
+  <statement name="DO">
+    <block type="controls_if">
+      <mutation elseif="0" else="1"></mutation>
+      <value name="IF0">
+        <block type="logic_operation">
+          <field name="OP">OR</field>
+          <value name="A">
+            <block type="logic_operation">
+              <field name="OP">OR</field>
+              <value name="A">
+                <block type="text_isEmpty">
+                  <value name="VALUE">
+                    <block type="component_set_get">
+                      <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoIdPrograma"></mutation>
+                      <field name="COMPONENT_SELECTOR">CampoIdPrograma</field>
+                      <field name="PROP">Text</field>
+                    </block>
+                  </value>
+                </block>
+              </value>
+              <value name="B">
+                <block type="text_isEmpty">
+                  <value name="VALUE">
+                    <block type="component_set_get">
+                      <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoNombrePrograma"></mutation>
+                      <field name="COMPONENT_SELECTOR">CampoNombrePrograma</field>
+                      <field name="PROP">Text</field>
+                    </block>
+                  </value>
+                </block>
+              </value>
+            </block>
+          </value>
+          <value name="B">
+            <block type="text_isEmpty">
+              <value name="VALUE">
+                <block type="component_set_get">
+                  <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmisoraId"></mutation>
+                  <field name="COMPONENT_SELECTOR">CampoEmisoraId</field>
+                  <field name="PROP">Text</field>
+                </block>
+              </value>
+            </block>
+          </value>
+        </block>
+      </value>
+      <statement name="DO0">
+        <block type="component_method">
+          <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+          <field name="COMPONENT_SELECTOR">Notifier1</field>
+          <value name="ARG0"><block type="text"><field name="TEXT">El ID, el nombre y el ID de la emisora son obligatorios</field></block></value>
+        </block>
+      </statement>
+      <statement name="ELSE"><block type="lexical_variable_set"><field name="VAR">global estadoFormularioPrograma</field><value name="VALUE"><block type="text"><field name="TEXT">guardando</field></block></value><next>
+        <block type="component_set_get"><mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field><field name="PROP">Url</field><value name="VALUE"><block type="text_join"><mutation items="3"></mutation><value name="ADD0"><block type="text"><field name="TEXT">https://appemisoras-backend.onrender.com/api/programas/</field></block></value><value name="ADD1"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoIdPrograma"></mutation><field name="COMPONENT_SELECTOR">CampoIdPrograma</field><field name="PROP">Text</field></block></value><value name="ADD2"><block type="text"><field name="TEXT"></field></block></value></block></value><next><block type="component_method"><mutation component_type="Web" method_name="PutText" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field><value name="ARG0"><block type="text_join"><mutation items="22"></mutation><value name="ADD0"><block type="text"><field name="TEXT">{</field></block></value><value name="ADD1"><block type="text"><field name="TEXT">"id":"</field></block></value><value name="ADD2"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoIdPrograma"></mutation><field name="COMPONENT_SELECTOR">CampoIdPrograma</field><field name="PROP">Text</field></block></value><value name="ADD3"><block type="text"><field name="TEXT">","nombre":"</field></block></value><value name="ADD4"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoNombrePrograma"></mutation><field name="COMPONENT_SELECTOR">CampoNombrePrograma</field><field name="PROP">Text</field></block></value><value name="ADD5"><block type="text"><field name="TEXT">","emisoraId":"</field></block></value><value name="ADD6"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmisoraId"></mutation><field name="COMPONENT_SELECTOR">CampoEmisoraId</field><field name="PROP">Text</field></block></value><value name="ADD7"><block type="text"><field name="TEXT">","conductor":"</field></block></value><value name="ADD8"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoConductor"></mutation><field name="COMPONENT_SELECTOR">CampoConductor</field><field name="PROP">Text</field></block></value><value name="ADD9"><block type="text"><field name="TEXT">","horarioInicio":"</field></block></value><value name="ADD10"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoHorarioInicio"></mutation><field name="COMPONENT_SELECTOR">CampoHorarioInicio</field><field name="PROP">Text</field></block></value><value name="ADD11"><block type="text"><field name="TEXT">","horarioFin":"</field></block></value><value name="ADD12"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoHorarioFin"></mutation><field name="COMPONENT_SELECTOR">CampoHorarioFin</field><field name="PROP">Text</field></block></value><value name="ADD13"><block type="text"><field name="TEXT">","genero":"</field></block></value><value name="ADD14"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoGeneroPrograma"></mutation><field name="COMPONENT_SELECTOR">CampoGeneroPrograma</field><field name="PROP">Text</field></block></value><value name="ADD15"><block type="text"><field name="TEXT">","duracionMinutos":"</field></block></value><value name="ADD16"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoDuracionMinutos"></mutation><field name="COMPONENT_SELECTOR">CampoDuracionMinutos</field><field name="PROP">Text</field></block></value><value name="ADD17"><block type="text"><field name="TEXT">","descripcion":"</field></block></value><value name="ADD18"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoDescripcionPrograma"></mutation><field name="COMPONENT_SELECTOR">CampoDescripcionPrograma</field><field name="PROP">Text</field></block></value><value name="ADD19"><block type="text"><field name="TEXT">","diasTransmision":"</field></block></value><value name="ADD20"><block type="component_set_get"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoDiasTransmision"></mutation><field name="COMPONENT_SELECTOR">CampoDiasTransmision</field><field name="PROP">Text</field></block></value><value name="ADD21"><block type="text"><field name="TEXT">"}</field></block></value></block></value></block></next></block>
+      </next></block></statement>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="800">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonEliminarPrograma" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonEliminarPrograma</field>
+  <statement name="DO">
+    <block type="controls_if">
+      <mutation elseif="0" else="1"></mutation>
+      <value name="IF0">
+        <block type="text_isEmpty">
+          <value name="VALUE"><block type="lexical_variable_get"><field name="VAR">global idProgramaEditando</field></block></value>
+        </block>
+      </value>
+      <statement name="DO0">
+        <block type="component_method">
+          <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+          <field name="COMPONENT_SELECTOR">Notifier1</field>
+          <value name="ARG0"><block type="text"><field name="TEXT">No hay un programa cargado para eliminar</field></block></value>
+        </block>
+      </statement>
+      <statement name="ELSE"><block type="lexical_variable_set"><field name="VAR">global estadoFormularioPrograma</field><value name="VALUE"><block type="text"><field name="TEXT">eliminando</field></block></value><next>
+        <block type="component_set_get"><mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field><field name="PROP">Url</field><value name="VALUE"><block type="text_join"><mutation items="3"></mutation><value name="ADD0"><block type="text"><field name="TEXT">https://appemisoras-backend.onrender.com/api/programas/</field></block></value><value name="ADD1"><block type="lexical_variable_get"><field name="VAR">global idProgramaEditando</field></block></value><value name="ADD2"><block type="text"><field name="TEXT"></field></block></value></block></value><next><block type="component_method"><mutation component_type="Web" method_name="Delete" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field></block></next></block>
+      </next></block></statement>
+    </block>
+  </statement>
+</block>
+<block type="component_event" x="0" y="1000">
+  <mutation component_type="Button" is_generic="false" instance_name="BotonCancelarPrograma" event_name="Click"></mutation>
+  <field name="COMPONENT_SELECTOR">BotonCancelarPrograma</field>
+  <statement name="DO">
+    <block type="controls_openAnotherScreen">
+      <value name="SCREEN"><block type="text"><field name="TEXT">ProgramasLista</field></block></value>
+    </block>
+  </statement>
+</block>
+</xml>

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: appemisoras-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: PERSISTENCIA
+        value: firebase
+      - key: FIREBASE_BASE_URL
+        value: https://appemisoras-e019e-default-rtdb.firebaseio.com

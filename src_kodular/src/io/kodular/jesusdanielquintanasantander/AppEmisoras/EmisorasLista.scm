@@ -1,0 +1,4 @@
+#|
+$JSON
+{"authURL":["creator.kodular.io"],"YaVersion":"247","Source":"Form","Properties":{"$Name":"EmisorasLista","$Type":"Form","$Version":"46","Scrollable":"True","Title":"Emisoras","Uuid":"0","$Components":[{"$Name":"TituloListaEmisoras","$Type":"Label","$Version":"10","Text":"Listado de Emisoras","Uuid":"305182001"},{"$Name":"BotonNuevaEmisora","$Type":"Button","$Version":"13","Text":"+ Nueva emisora","Uuid":"305182002"},{"$Name":"ListaEmisoras","$Type":"ListView","$Version":"1","Uuid":"305182003"},{"$Name":"BotonVolverMenu","$Type":"Button","$Version":"13","Text":"Volver al men\u00fa","Uuid":"305182004"},{"$Name":"Notifier1","$Type":"Notifier","$Version":"6","Uuid":"305182005"},{"$Name":"Web1","$Type":"Web","$Version":"8","Uuid":"305182006"},{"$Name":"AccelerometerSensor1","$Type":"AccelerometerSensor","$Version":"3","Uuid":"411920020"}]}}
+|#

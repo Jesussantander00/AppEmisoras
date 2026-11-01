@@ -1,0 +1,171 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="global_declaration" x="0" y="-200">
+    <field name="NAME">datoRecuperado</field>
+    <value name="VALUE"><block type="dictionaries_create_with"><mutation items="0"></mutation></block></value>
+  </block>
+
+  <block type="component_event" x="0" y="0">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonEnviarRecuperacion" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonEnviarRecuperacion</field>
+    <statement name="DO">
+      <block type="controls_if">
+        <mutation elseif="0" else="1"></mutation>
+        <value name="IF0">
+          <block type="text_isEmpty">
+            <value name="VALUE">
+              <block type="component_set_get">
+                <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmailRecuperar"></mutation>
+                <field name="COMPONENT_SELECTOR">CampoEmailRecuperar</field>
+                <field name="PROP">Text</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_method">
+            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+            <field name="COMPONENT_SELECTOR">Notifier1</field>
+            <value name="ARG0">
+              <block type="text"><field name="TEXT">Escribe tu correo electrónico</field></block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="component_set_get">
+            <mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="Web1"></mutation>
+            <field name="COMPONENT_SELECTOR">Web1</field>
+            <field name="PROP">Url</field>
+            <value name="VALUE">
+              <block type="text"><field name="TEXT">https://appemisoras-backend.onrender.com/api/auth/recuperar-clave</field></block>
+            </value>
+            <next>
+              <block type="component_method">
+                <mutation component_type="Web" method_name="PostText" is_generic="false" instance_name="Web1"></mutation>
+                <field name="COMPONENT_SELECTOR">Web1</field>
+                <value name="ARG0">
+                  <block type="text_join">
+                    <mutation items="3"></mutation>
+                    <value name="ADD0"><block type="text"><field name="TEXT">{"email":"</field></block></value>
+                    <value name="ADD1">
+                      <block type="component_set_get">
+                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmailRecuperar"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoEmailRecuperar</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                    <value name="ADD2"><block type="text"><field name="TEXT">"}</field></block></value>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" x="0" y="800">
+    <mutation component_type="Web" is_generic="false" instance_name="Web1" event_name="GotText"></mutation>
+    <field name="COMPONENT_SELECTOR">Web1</field>
+    <statement name="DO">
+      <block type="controls_if">
+        <mutation elseif="0" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_negate">
+            <value name="BOOL">
+              <block type="logic_compare">
+                <field name="OP">EQ</field>
+                <value name="A"><block type="lexical_variable_get"><mutation><eventparam name="responseCode"></eventparam></mutation><field name="VAR">responseCode</field></block></value>
+                <value name="B"><block type="math_number"><field name="NUM">200</field></block></value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_method">
+            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+            <field name="COMPONENT_SELECTOR">Notifier1</field>
+            <value name="ARG0">
+              <block type="text"><field name="TEXT">No existe una cuenta con ese correo</field></block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="lexical_variable_set">
+            <field name="VAR">global datoRecuperado</field>
+            <value name="VALUE">
+              <block type="dictionaries_alist_to_dict"><value name="PAIRS"><block type="component_method"><mutation component_type="Web" method_name="JsonTextDecode" is_generic="false" instance_name="Web1"></mutation><field name="COMPONENT_SELECTOR">Web1</field><value name="ARG0"><block type="lexical_variable_get"><mutation><eventparam name="responseContent"></eventparam></mutation><field name="VAR">responseContent</field></block></value></block></value></block>
+            </value>
+            <next>
+              <block type="component_set_get">
+                <mutation component_type="ActivityStarter" set_or_get="set" property_name="Action" is_generic="false" instance_name="ActivityStarter1"></mutation>
+                <field name="COMPONENT_SELECTOR">ActivityStarter1</field>
+                <field name="PROP">Action</field>
+                <value name="VALUE">
+                  <block type="text"><field name="TEXT">android.intent.action.SENDTO</field></block>
+                </value>
+                <next>
+                  <block type="component_set_get">
+                    <mutation component_type="ActivityStarter" set_or_get="set" property_name="DataUri" is_generic="false" instance_name="ActivityStarter1"></mutation>
+                    <field name="COMPONENT_SELECTOR">ActivityStarter1</field>
+                    <field name="PROP">DataUri</field>
+                    <value name="VALUE">
+                      <block type="text_join">
+                        <mutation items="4"></mutation>
+                        <value name="ADD0"><block type="text"><field name="TEXT">mailto:</field></block></value>
+                        <value name="ADD1">
+                          <block type="component_set_get">
+                            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmailRecuperar"></mutation>
+                            <field name="COMPONENT_SELECTOR">CampoEmailRecuperar</field>
+                            <field name="PROP">Text</field>
+                          </block>
+                        </value>
+                        <value name="ADD2"><block type="text"><field name="TEXT">?subject=Recuperacion%20de%20contrasena&amp;body=Tu%20contrasena%20registrada%20es%3A%20</field></block></value>
+                        <value name="ADD3">
+                          <block type="dictionaries_lookup">
+                            <value name="KEY"><block type="text"><field name="TEXT">clave</field></block></value>
+                            <value name="DICT">
+                              <block type="lexical_variable_get">
+                                <field name="VAR">global datoRecuperado</field>
+                              </block>
+                            </value>
+                            <value name="NOTFOUND"><block type="text"><field name="TEXT"></field></block></value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="component_method">
+                        <mutation component_type="ActivityStarter" method_name="StartActivity" is_generic="false" instance_name="ActivityStarter1"></mutation>
+                        <field name="COMPONENT_SELECTOR">ActivityStarter1</field>
+                        <next>
+                          <block type="component_method">
+                            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+                            <field name="COMPONENT_SELECTOR">Notifier1</field>
+                            <value name="ARG0">
+                              <block type="text"><field name="TEXT">Se abrió tu app de correo con tu contraseña. Envíate el mensaje para completar la recuperación.</field></block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" x="0" y="1600">
+    <mutation component_type="Label" is_generic="false" instance_name="LinkVolverLoginDesdeRecuperar" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">LinkVolverLoginDesdeRecuperar</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen">
+        <value name="SCREEN"><block type="text"><field name="TEXT">Screen1</field></block></value>
+      </block>
+    </statement>
+  </block>
+</xml>

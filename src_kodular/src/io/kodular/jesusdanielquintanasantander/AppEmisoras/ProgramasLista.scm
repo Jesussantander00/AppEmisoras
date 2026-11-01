@@ -1,0 +1,4 @@
+#|
+$JSON
+{"authURL":["creator.kodular.io"],"YaVersion":"247","Source":"Form","Properties":{"$Name":"ProgramasLista","$Type":"Form","$Version":"46","Scrollable":"True","Title":"Programas","Uuid":"0","$Components":[{"$Name":"TituloListaProgramas","$Type":"Label","$Version":"10","Text":"Listado de Programas","Uuid":"100200301"},{"$Name":"BotonNuevoPrograma","$Type":"Button","$Version":"13","Text":"+ Nuevo programa","Uuid":"100200302"},{"$Name":"ListaProgramas","$Type":"ListView","$Version":"1","Uuid":"100200303"},{"$Name":"BotonVolverMenuProgramas","$Type":"Button","$Version":"13","Text":"Volver al men\u00fa","Uuid":"100200304"},{"$Name":"Notifier1","$Type":"Notifier","$Version":"6","Uuid":"100200305"},{"$Name":"Web1","$Type":"Web","$Version":"8","Uuid":"100200306"},{"$Name":"AccelerometerSensor1","$Type":"AccelerometerSensor","$Version":"3","Uuid":"411920021"}]}}
+|#

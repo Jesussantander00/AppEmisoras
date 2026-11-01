@@ -1,0 +1,241 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="global_declaration" x="0" y="0">
+    <field name="NAME">pendienteNombre</field>
+    <value name="VALUE"><block type="text"><field name="TEXT"></field></block></value>
+  </block>
+  <block type="global_declaration" x="0" y="150">
+    <field name="NAME">pendienteEmail</field>
+    <value name="VALUE"><block type="text"><field name="TEXT"></field></block></value>
+  </block>
+  <block type="global_declaration" x="0" y="300">
+    <field name="NAME">pendienteClave</field>
+    <value name="VALUE"><block type="text"><field name="TEXT"></field></block></value>
+  </block>
+
+  <block type="component_event" x="0" y="500">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonRegistrar" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonRegistrar</field>
+    <statement name="DO">
+      <block type="controls_if">
+        <mutation elseif="0" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_operation">
+            <field name="OP">OR</field>
+            <value name="A">
+              <block type="logic_operation">
+                <field name="OP">OR</field>
+                <value name="A">
+                  <block type="text_isEmpty">
+                    <value name="VALUE">
+                      <block type="component_set_get">
+                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoNombre"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoNombre</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="text_isEmpty">
+                    <value name="VALUE">
+                      <block type="component_set_get">
+                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmail"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoEmail</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_operation">
+                <field name="OP">OR</field>
+                <value name="A">
+                  <block type="text_isEmpty">
+                    <value name="VALUE">
+                      <block type="component_set_get">
+                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClave"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoClave</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="logic_compare">
+                    <field name="OP">NEQ</field>
+                    <value name="A">
+                      <block type="component_set_get">
+                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClave"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoClave</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="component_set_get">
+                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoConfirmarClave"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoConfirmarClave</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_method">
+            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+            <field name="COMPONENT_SELECTOR">Notifier1</field>
+            <value name="ARG0">
+              <block type="text"><field name="TEXT">Completa todos los campos y verifica que las contraseñas coincidan</field></block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="lexical_variable_set">
+            <field name="VAR">global pendienteNombre</field>
+            <value name="VALUE">
+              <block type="component_set_get">
+                <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoNombre"></mutation>
+                <field name="COMPONENT_SELECTOR">CampoNombre</field>
+                <field name="PROP">Text</field>
+              </block>
+            </value>
+            <next>
+              <block type="lexical_variable_set">
+                <field name="VAR">global pendienteEmail</field>
+                <value name="VALUE">
+                  <block type="component_set_get">
+                    <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmail"></mutation>
+                    <field name="COMPONENT_SELECTOR">CampoEmail</field>
+                    <field name="PROP">Text</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="lexical_variable_set">
+                    <field name="VAR">global pendienteClave</field>
+                    <value name="VALUE">
+                      <block type="component_set_get">
+                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClave"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoClave</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="component_set_get">
+                        <mutation component_type="Web" set_or_get="set" property_name="Url" is_generic="false" instance_name="Web1"></mutation>
+                        <field name="COMPONENT_SELECTOR">Web1</field>
+                        <field name="PROP">Url</field>
+                        <value name="VALUE">
+                          <block type="text"><field name="TEXT">https://appemisoras-backend.onrender.com/api/auth/registro</field></block>
+                        </value>
+                        <next>
+                          <block type="component_method">
+                            <mutation component_type="Web" method_name="PostText" is_generic="false" instance_name="Web1"></mutation>
+                            <field name="COMPONENT_SELECTOR">Web1</field>
+                            <value name="ARG0">
+                              <block type="text_join">
+                                <mutation items="8"></mutation>
+                                <value name="ADD0"><block type="text"><field name="TEXT">{</field></block></value>
+                                <value name="ADD1"><block type="text"><field name="TEXT">"nombre":"</field></block></value>
+                                <value name="ADD2"><block type="lexical_variable_get"><field name="VAR">global pendienteNombre</field></block></value>
+                                <value name="ADD3"><block type="text"><field name="TEXT">","email":"</field></block></value>
+                                <value name="ADD4"><block type="lexical_variable_get"><field name="VAR">global pendienteEmail</field></block></value>
+                                <value name="ADD5"><block type="text"><field name="TEXT">","clave":"</field></block></value>
+                                <value name="ADD6"><block type="lexical_variable_get"><field name="VAR">global pendienteClave</field></block></value>
+                                <value name="ADD7"><block type="text"><field name="TEXT">"}</field></block></value>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" x="0" y="1400">
+    <mutation component_type="Web" is_generic="false" instance_name="Web1" event_name="GotText"></mutation>
+    <field name="COMPONENT_SELECTOR">Web1</field>
+    <statement name="DO">
+      <block type="controls_if">
+        <mutation elseif="0" else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare">
+            <field name="OP">EQ</field>
+            <value name="A"><block type="lexical_variable_get"><mutation><eventparam name="responseCode"></eventparam></mutation><field name="VAR">responseCode</field></block></value>
+            <value name="B"><block type="math_number"><field name="NUM">201</field></block></value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_method">
+            <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"></mutation>
+            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+            <value name="ARG0"><block type="text"><field name="TEXT">usuarioId</field></block></value>
+            <value name="ARG1">
+              <block type="lexical_variable_get">
+                <field name="VAR">global pendienteEmail</field>
+              </block>
+            </value>
+            <next>
+              <block type="component_method">
+                <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+                <field name="COMPONENT_SELECTOR">Notifier1</field>
+                <value name="ARG0">
+                  <block type="text"><field name="TEXT">Cuenta creada correctamente</field></block>
+                </value>
+                <next>
+                  <block type="controls_openAnotherScreen">
+                    <value name="SCREEN"><block type="text"><field name="TEXT">MenuPrincipal</field></block></value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="component_method">
+            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notifier1"></mutation>
+            <field name="COMPONENT_SELECTOR">Notifier1</field>
+            <value name="ARG0">
+              <block type="dictionaries_lookup">
+                <value name="KEY"><block type="text"><field name="TEXT">error</field></block></value>
+                <value name="DICT">
+                  <block type="dictionaries_alist_to_dict">
+                    <value name="PAIRS">
+                      <block type="component_method">
+                        <mutation component_type="Web" method_name="JsonTextDecode" is_generic="false" instance_name="Web1"></mutation>
+                        <field name="COMPONENT_SELECTOR">Web1</field>
+                        <value name="ARG0"><block type="lexical_variable_get"><mutation><eventparam name="responseContent"></eventparam></mutation><field name="VAR">responseContent</field></block></value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="NOTFOUND"><block type="text"><field name="TEXT">No se pudo crear la cuenta</field></block></value>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" x="0" y="2300">
+    <mutation component_type="Label" is_generic="false" instance_name="LinkVolverLogin" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">LinkVolverLogin</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen">
+        <value name="SCREEN"><block type="text"><field name="TEXT">Screen1</field></block></value>
+      </block>
+    </statement>
+  </block>
+</xml>
